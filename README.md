@@ -1,4 +1,5 @@
-# MarketReader
+# 📦 Proje Yapısı
+## MarketReader
 
 **MarketReader**, websocket üzerinden alınan veriyi **price / time (tick) data** formatıyla izleyip parite bazlı .db veritabanı ile saklayan Chrome eklentisidir.
 
@@ -19,7 +20,7 @@ Sunucu, sadece browser görür.
 
 ---
 
-## 🧠 Why MarketReader?
+## 🧠 Neden MarketReader?
 
 API'ler:
 - Sınırlı
