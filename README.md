@@ -75,6 +75,3 @@ MarketReader:
 - Is broker-agnostic by design
 
 ---
-
-## 📦 Project Structure
-
