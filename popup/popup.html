@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketReader</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>MarketReader</h1>
+
+  <div class="controls">
+    <input type="text" id="pairInput" placeholder="Pair (e.g. eur_usd)">
+    <button id="startBtn">Start</button>
+    <button id="stopBtn">Stop</button>
+  </div>
+
+  <div class="status">
+    <p id="statusLine">Status: stopped</p>
+    <p id="lagLine"></p>
+  </div>
+
+  <div class="tickEcho">
+    <h2>Latest Ticks</h2>
+    <ul id="tickList"></ul>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "MarketReader",
+  "description": "Browser-native WebSocket price/time reader for trading platforms.",
+  "version": "0.1.0",
+
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+
+  "background": {
+    "service_worker": "background/background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/ws_hook.js"],
+      "run_at": "document_start"
+    }
+  ],
+
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}
