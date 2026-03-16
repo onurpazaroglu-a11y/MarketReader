@@ -71,3 +71,26 @@ request.onsuccess = () => {
     callback(request.result);
 };
 }
+
+export function exportTicks(callback) {
+if (!db) {
+    callback(null);
+    return;
+}
+
+const tx = db.transaction("ticks", "readonly");
+const store = tx.objectStore("ticks");
+const request = store.getAll();
+
+request.onsuccess = () => {
+    const ticks = request.result;
+    const csv = ticks.length > 0
+        ? "timestamp,price,lag\n" + ticks.map(t => `${t.timestamp},${t.price},${t.lag ?? ""}`).join("\n")
+        : "";
+    callback(csv);
+};
+
+request.onerror = () => {
+    callback(null);
+};
+}

@@ -7,9 +7,30 @@ let buffer = [];
  * Log ekle
  */
 export function log(message) {
+
 const entry = {
     time: Date.now(),
-    message
+    message,
+    type: "info"
+};
+
+buffer.push(entry);
+
+if (buffer.length > MAX_LINES) {
+    buffer.shift();
+}
+
+return entry;
+}
+
+/**
+ * Uyarı logu
+ */
+export function warn(message) {
+const entry = {
+    time: Date.now(),
+    message,
+    type: "warn"
 };
 
 buffer.push(entry);

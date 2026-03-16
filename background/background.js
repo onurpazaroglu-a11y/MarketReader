@@ -1,6 +1,6 @@
 // background/background.js
 
-import { initDB, writeTick } from "../storage/db.js";
+import { initDB, writeTick, exportTicks } from "../storage/db.js";
 import { log, warn } from "../utils/logger.js";
 import { parseTick } from "../parsers/index.js";
 import { nowMs, diffMs } from "../utils/time.js";
@@ -33,6 +33,14 @@ const rawPayload = {
   // 🔹 parse + normalize (TEK NOKTA)
 const tick = parseTick(rawPayload);
 if (!tick) return;
+
+  // ---- PAIR FILTER ---- //
+const normalizedInput = currentPair.toLowerCase().replace(/[^a-z0-9]/g, "");
+const normalizedTick = tick.pair.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+if (normalizedInput !== normalizedTick) {
+    return;
+}
 
   // ---- TIME SANITY ---- //
 
@@ -107,6 +115,14 @@ switch (message.type) {
     case "WS_MESSAGE": {
     handleWebSocketMessage(message.data, message.url);
     break;
+    }
+
+    // 📤 EXPORT DATA (popup'tan gelir)
+    case "EXPORT_DATA": {
+    exportTicks((csv) => {
+        sendResponse({ csv: csv, pair: currentPair });
+    });
+    return true;
     }
 }
 

@@ -2,7 +2,7 @@
 (() => {
   // 1️⃣ Page context'e ws_hook.js enjekte et
   const script = document.createElement("script");
-  script.src = chrome.runtime.getURL("background/ws_hook.js");
+  script.src = chrome.runtime.getURL("content/ws_hook.js");
   script.type = "text/javascript";
   script.async = false;
 
